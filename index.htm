@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>三角函數運算程式</title>
+<style>
+    body{
+        text-align: center;
+        border: 1px solid black;
+        padding: 15px;
+        width: 300px;
+        margin: 250px 0px 0px 600px;
+    }
+</style>
+<script>
+function calculate() {
+    var x = parseFloat(document.getElementById('input').value);
+    var sinResult = Math.sin(x);
+    var cosResult = Math.cos(x);
+    var factorialResult = factorial(x);
+
+    document.getElementById('sinResult').innerHTML = "sin(" + x + ") = " + sinResult.toFixed(4);
+    document.getElementById('cosResult').innerHTML = "cos(" + x + ") = " + cosResult.toFixed(4);
+    document.getElementById('factorialResult').innerHTML = x + "! = " + factorialResult;
+}
+
+function factorial(n) {
+    if (n === 0 || n === 1)
+        return 1;
+    else {
+        for (var i = n - 1; i >= 1; i--) {
+            n *= i;
+        }
+        return n;
+    }
+}
+</script>
+</head>
+<body>
+<h2>三角函數運算程式</h2>
+<p>輸入一個數字 x 進行運算：</p>
+<input type="number" id="input">
+<button onclick="calculate()">運算</button>
+<br><br>
+<p id="sinResult"></p>
+<p id="cosResult"></p>
+<p id="factorialResult"></p>
+<p>&copy;許元洧、楊凱元 聯合製作</p>
+</body>
+</html>
