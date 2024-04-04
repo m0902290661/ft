@@ -1,50 +1,61 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>三角函數運算程式</title>
-<style>
-    body{
-        text-align: center;
-        border: 1px solid black;
-        padding: 15px;
-        width: 300px;
-        margin: 250px 0px 0px 600px;
-    }
-</style>
-<script>
-function calculate() {
-    var x = parseFloat(document.getElementById('input').value);
-    var sinResult = Math.sin(x);
-    var cosResult = Math.cos(x);
-    var factorialResult = factorial(x);
-
-    document.getElementById('sinResult').innerHTML = "sin(" + x + ") = " + sinResult.toFixed(4);
-    document.getElementById('cosResult').innerHTML = "cos(" + x + ") = " + cosResult.toFixed(4);
-    document.getElementById('factorialResult').innerHTML = x + "! = " + factorialResult;
-}
-
-function factorial(n) {
-    if (n === 0 || n === 1)
-        return 1;
-    else {
-        for (var i = n - 1; i >= 1; i--) {
-            n *= i;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>運算程式（三角函數等）</title>
+    <style>
+        .d{
+            text-align: center;
+            border: 1px solid black;
+            padding: 50px;
+            width: 400px;
+            height: 300px;
         }
-        return n;
-    }
-}
-</script>
+    </style>
+    <script>
+        function cos(){
+            var i = document.getElementById('in').value;
+            var x = i * Math.PI / 180;
+            var ans = 1 - (Math.pow(x, 2) / 2) + (Math.pow(x, 4) / 24) - (Math.pow(x, 6) / 720) + (Math.pow(x, 8) / 40320) - (Math.pow(x, 10) / 3628800) + (Math.pow(x, 12) / 479001600) - (Math.pow(x, 14) / 87178291200) + (Math.pow(x, 16) / 2092278988800);
+            var ans1 = ans.toFixed(5);
+            document.getElementById('out').innerHTML='cos('+i+')的值是＝'+ans1;
+        }
+        function sin(){
+            var i = document.getElementById('in').value;
+            var x = i * Math.PI / 180;
+            var ans = x - (Math.pow(x, 3) / 6) + (Math.pow(x, 5) / 120) - (Math.pow(x, 7) / 5040);
+            var ans1 = ans.toFixed(5);
+            document.getElementById('out').innerHTML='sin('+i+')的值是＝'+ans1;
+        }
+        function stair(){
+            var x = document.getElementById('in').value;
+            if(x < 0){
+                document.getElementById('out').innerHTML='error';
+            }
+            if(x===''){
+                document.getElementById('out').innerHTML='error';
+            }
+            var i = 2;
+            var a = 1;
+            while(i<=x){
+                a*=i;
+                i++;
+            }
+            document.getElementById('out').innerHTML=x+'的階乘為'+a;
+        }
+    </script>
 </head>
 <body>
-<h2>三角函數運算程式</h2>
-<p>輸入一個數字 x 進行運算：</p>
-<input type="number" id="input">
-<button onclick="calculate()">運算</button>
-<br><br>
-<p id="sinResult"></p>
-<p id="cosResult"></p>
-<p id="factorialResult"></p>
-<p>&copy;許元洧、楊凱元 聯合製作</p>
+    <div class="d">
+        <h1>運算程式（三角函數等）</h1>
+        <input type="number" id="in">
+        <br>
+        <button onclick="sin()">sin</button>
+        <button onclick="cos()">cos</button>
+        <button onclick="stair()">階乘</button>
+        <p id="out"></p>
+        <p>&copy;許元洧 楊凱元 聯合製作</p>
+    </div>
 </body>
 </html>
